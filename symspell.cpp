@@ -79,6 +79,8 @@ bool SymSpell::load_dictionary(const std::string& fn) {
     if (!file.is_open()) {
         std::cerr << "Could not open file: " << fn << std::endl;
         return false;
+    } else {
+        std::cout << "Loading dictionary from file: " << fn << std::endl;
     }
     
     std::string line;
@@ -228,7 +230,7 @@ std::vector<std::pair<std::string, int>> SymSpell::lookup(const std::string& wor
             suggestion_set.insert(suggestion);
             
             // Check if edit distance is within our threshold
-            int dist = levenshtein_distance(word, suggestion);
+            int dist = damerau_levenshtein_distance(word, suggestion);
             if (dist <= max_dist_lookup) {
                 suggestions.push_back({suggestion, dist});
             }
