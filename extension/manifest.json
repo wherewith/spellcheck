@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "SpellCheck",
+    "version": "1.0.0",
+    "background": {
+        "service_worker": "service-worker.js",
+        "type": "module"
+    },
+    "action": { },
+    "permissions": [
+        "scripting",
+        "tabs"
+    ],
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ]
+}
