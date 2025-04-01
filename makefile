@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -I./include
+CXXFLAGS = -std=c++17 -I/opt/homebrew/include
 LDFLAGS = -lpthread
 
 SRC = $(wildcard *.cpp)
