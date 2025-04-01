@@ -12,7 +12,7 @@ chrome.action.onClicked.addListener(tab => {
 
             // A simple dictionary – replace with a real one or external API
             const dictionary = new Set([
-                
+
             ]);
 
             // Highlight dictionary words within all inner spans
@@ -69,7 +69,25 @@ chrome.action.onClicked.addListener(tab => {
                     if (words && words.length > 0) {
                         const recentWord = words[words.length - 1];
                         console.log("Most recent word:", recentWord);
-                        dictionary.add(recentWord.toLowerCase());
+
+                        const url = `http://localhost:8080/spellcheck?word=${encodeURIComponent(recentWord)}`;
+                        fetch(url)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data && data.suggestions && data.suggestions.length > 0) {
+                                    const highestSuggestion = data.suggestions[0];
+
+                                    console.log( data.suggestions)
+
+                                    if (highestSuggestion.edit_distance > 0) {
+                                        dictionary.add(recentWord.toLowerCase());
+                                        highlightDictionaryWords();
+                                    }
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Spellcheck request error:", error);
+                            });
                     }
                 }
             };
@@ -80,6 +98,7 @@ chrome.action.onClicked.addListener(tab => {
                 const debounceUpdate = () => {
                     clearTimeout(timeoutId);
                     timeoutId = setTimeout(() => {
+                        console.log(dictionary);
                         addMostRecentWordToDictionary();
                         highlightDictionaryWords();
                     }, 500); // Run 500ms after typing stops
