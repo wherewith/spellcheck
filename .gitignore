@@ -1,18 +1,20 @@
-.vscode/
-*.o
-*.out
-
-CMakeCache.txt
+# C++ build files
+spellchecker/build/
+spellchecker/bin/
+spellchecker/*.o
+spellchecker/*.out
+spellchecker/*.exe
 CMakeFiles/
+CMakeCache.txt
+Makefile
 cmake_install.cmake
 
-*.exe
-*.out
-*.app
-*.elf
+# OS/IDE/editor
+.DS_Store
+*.swp
+.vscode/
+.idea/
 
-*.a
-*.lib
-*.so
-*.dylib
-*.dll
+# Python virtual environments
+finetuning/venv/
+finetuning/.env
