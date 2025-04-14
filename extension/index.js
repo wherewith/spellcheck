@@ -3,7 +3,7 @@ if (!document.getElementById("spellcheck-style")) {
     const style = document.createElement("style");
     style.id = "spellcheck-style";
     style.textContent = `
-        .myDictionaryWord { color: red; cursor: pointer; }
+        .myDictionaryWord { cursor: pointer; text-decoration: underline; text-decoration-style: wavy; text-decoration-color: red; } 
         #myWordTooltip {
             position: absolute;
             background: #333;
