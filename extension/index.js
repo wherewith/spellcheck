@@ -1,5 +1,3 @@
-alert('hello world');
-
 // index.js
 (() => {
     const dictionary = new Map();
