@@ -1,0 +1,33 @@
+{
+    "manifest_version": 3,
+    "name": "SpellCheck",
+    "version": "1.0.0",
+    "description": "Toggleable spell‑checking overlay",
+  
+    "permissions": [
+      "scripting",
+      "tabs",
+      "storage"
+    ],
+  
+    "host_permissions": [
+      "<all_urls>"
+    ],
+  
+    "web_accessible_resources": [
+      {
+        "resources": ["index.js", "teardown.js", "content_styles.css"],
+        "matches": ["<all_urls>"]
+      }
+    ],
+  
+    "background": {
+      "service_worker": "service-worker.js",
+      "type": "module"
+    },
+  
+    "action": {
+      "default_popup": "index.html"
+    }
+  }
+  
