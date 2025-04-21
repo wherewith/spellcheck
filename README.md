@@ -25,7 +25,7 @@ Build the server with make
 
 `make`
 
-Export environement variables
+Export environment variables
 ```bash
   export OPENAI_API_KEY='...'
 ```
