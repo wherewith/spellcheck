@@ -16,7 +16,7 @@
   
     "web_accessible_resources": [
       {
-        "resources": ["index.js", "teardown.js"],
+        "resources": ["index.js", "teardown.js", "content_styles.css"],
         "matches": ["<all_urls>"]
       }
     ],
