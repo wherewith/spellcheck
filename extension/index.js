@@ -115,15 +115,38 @@
     backdrop.style.display = 'none';
   });
 
-  // Save replacement
+  // Save replacement via /rewrite
   saveBtn.addEventListener('click', () => {
-    const newText = textarea.value;
-    if (currentRange) {
-      currentRange.deleteContents();
-      currentRange.insertNode(document.createTextNode(newText));
+    const original = textarea.value;
+    if (!original || !currentRange) {
+      backdrop.style.display = 'none';
+      return;
     }
-    backdrop.style.display = 'none';
+
+    // Call your backend
+    fetch('http://localhost:8080/rewrite', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: original })
+    })
+    .then(res => res.json())
+    .then(json => {
+      const rewritten = json.rewritten || original;
+      // perform replacement
+      currentRange.deleteContents();
+      currentRange.insertNode(document.createTextNode(rewritten));
+    })
+    .catch(err => {
+      console.error('Rewrite API error:', err);
+      // fallback to original text
+      currentRange.deleteContents();
+      currentRange.insertNode(document.createTextNode(original));
+    })
+    .finally(() => {
+      backdrop.style.display = 'none';
+    });
   });
+
 
   // ─── PART 2: Spell‑Check Overlay ────────────────────────────────────────────
 
