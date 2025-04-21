@@ -15,3 +15,6 @@ cmake_install.cmake
 # Python virtual environments
 finetuning/venv/
 finetuning/.env
+
+# large data
+finetuning/wikipedia-data
